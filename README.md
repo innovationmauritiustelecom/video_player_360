@@ -1,6 +1,6 @@
 # video_player_360
 
-A flutter plugin to stream 360° videos on iO
+A flutter plugin to stream 360° videos on iOS
 
 ## Getting Started
 
