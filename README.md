@@ -1,6 +1,6 @@
 # video_player_360
 
-A new flutter plugin project.
+A flutter plugin to stream 360° videos on iO
 
 ## Getting Started
 
@@ -12,3 +12,6 @@ Android and/or iOS.
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.dev/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+
+For now only for iOS.
+Android support coming soon.
