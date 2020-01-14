@@ -702,7 +702,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
                 return;
             }
         }
-        [self.targetAcquireLbl setHidden:YES];
+        //[self.targetAcquireLbl setHidden:YES];
     }
 }
 
@@ -710,7 +710,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 - (void)onTargetAcquired:(HTY360Target*)target {
     if (self.canTargeting) {
         NSLog(@"ACQUIRED TARGET %d (%@)", target.targetId, target.name);
-        [self.targetAcquireLbl setHidden:NO];
+        //[self.targetAcquireLbl setHidden:NO];
     }
 }
 

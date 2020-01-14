@@ -5,3 +5,7 @@
 ## 0.0.2
 
 * Fixed typo in README
+
+## 0.0.3
+
+* Hide target acquired label
