@@ -6,7 +6,7 @@ A Flutter plugin to stream 360° videos on iOS
 
 This is a Flutter plugin to play 360° videos via a URL. 
 
-For now only for iOS.
+The iOS player uses the open source [HTY360Player](https://github.com/hanton/HTY360Player)
 
 Android support coming soon.
 
