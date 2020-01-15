@@ -1,17 +1,17 @@
 # video_player_360
 
-A Flutter plugin to stream 360° videos on iOS
+A Flutter plugin to stream 360° videos on iOS and Android
 
 ## Getting Started
 
-This is a Flutter plugin to play 360° videos via a URL. 
+This is a Flutter plugin to play 360° videos via a remote URL. 
 
 The iOS player uses the open source [HTY360Player](https://github.com/hanton/HTY360Player)
 
-Android support coming soon.
+The Android player uses the open source [gvr-android-sdk] (https://github.com/googlevr/gvr-android-sdk)
 
 ## Installation
-Add video_player_360: ^0.0.1 in your pubspec.yaml dependencies.
+Add video_player_360: ^0.0.2 in your pubspec.yaml dependencies.
 
 ## How to use #
 importing the library:
