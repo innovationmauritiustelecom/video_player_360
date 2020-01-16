@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- UI to control video playback. See the class's javadoc for more info. -->
+<com.example.video_player_360.videoplayer.VideoUiView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/video_ui_view"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="#000">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/back_1"
+            android:contentDescription="@string/pause_label"/>
+        <ImageView
+            android:id="@+id/play_pause_toggle"
+            android:layout_width="48dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:src="@drawable/pause"
+            android:contentDescription="@string/pause_label"/>
+
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/seek_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:visibility="gone"
+        android:layout_width="0dp"/>
+
+    <TextView
+        android:id="@+id/status_text"
+        android:text="..."
+        android:gravity="center|end"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_width="72dp"
+        android:textSize="12dp"
+        android:textColor="#fff"
+        android:textAlignment="textEnd"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
+
+    <ImageButton
+        android:id="@+id/enter_exit_vr"
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@drawable/enter_vr"
+        android:contentDescription="@string/enter_vr_label"/>
+</com.example.video_player_360.videoplayer.VideoUiView>

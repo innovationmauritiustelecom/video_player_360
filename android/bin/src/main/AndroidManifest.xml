@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.video_player_360">
+
+
+    <uses-feature android:glEsVersion="0x00030002" android:required="true" />
+
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/>
+    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
+    <uses-feature android:name="android.hardware.vr.high_performance" android:required="true"/>
+    <uses-feature android:name="android.software.vr.mode" android:required="true"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:usesCleartextTraffic="true">
+        <activity android:name=".videoplayer.VideoActivity"
+            android:theme="@style/VrTheme"></activity>
+        <activity android:name=".videoplayer.VrVideoActivity"></activity>
+    </application>
+
+</manifest>
