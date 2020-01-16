@@ -1,7 +1,9 @@
 #import "VideoPlayer360Plugin.h"
 #import "HTY360PlayerVC.h"
+#import "GVRPlayerController.h"
 
 @implementation VideoPlayer360Plugin
+
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* channel = [FlutterMethodChannel
                                      methodChannelWithName:@"innov.lab/video_player_360"
@@ -23,13 +25,21 @@
               NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"360_bundle" ofType:@"bundle"];
               NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
               
-              HTY360PlayerVC *videoController = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC"
+              /*HTY360PlayerVC *videoController = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC"
                                                                                  bundle:bundle
                                                                                     url:url];
               
               [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:videoController
                                                                                          animated:YES
-                                                                                       completion:nil];
+                                                                                       completion:nil];*/
+              
+              GVRPlayerController *videoController = [[GVRPlayerController alloc] initWithNibName:@"HTY360PlayerVC"
+                                                                                           bundle:bundle
+                                                                                              url:url];
+              
+              [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:videoController
+                                                                                           animated:YES
+                                                                                         completion:nil];
           }
       }
       
