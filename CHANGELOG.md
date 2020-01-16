@@ -9,3 +9,7 @@
 ## 0.0.3
 
 * Hide target acquired label
+
+## 0.0.4
+
+* Android support
