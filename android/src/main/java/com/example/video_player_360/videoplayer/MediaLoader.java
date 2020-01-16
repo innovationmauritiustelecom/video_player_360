@@ -93,8 +93,8 @@ public class MediaLoader {
   private static final int DEFAULT_SPHERE_HORIZONTAL_DEGREES = 360;
 
   /** The 360 x 180 sphere has 15 degree quads. Increase these if lines in your video look wavy. */
-  private static final int DEFAULT_SPHERE_ROWS = 12;
-  private static final int DEFAULT_SPHERE_COLUMNS = 24;
+  private static final int DEFAULT_SPHERE_ROWS = 50;
+  private static final int DEFAULT_SPHERE_COLUMNS = 50;
 
   private final Context context;
   // This can be replaced by any media player that renders to a Surface. In a real app, this

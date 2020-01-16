@@ -34,7 +34,7 @@ import static com.example.video_player_360.videoplayer.rendering.Utils.checkGlEr
  */
 final class Reticle {
   // The reticle quad is 2 * SIZE units.
-  private static final float SIZE = .01f;
+  private static final float SIZE = .00f;
   private static final float DISTANCE = 1;
 
   // Standard vertex shader.
