@@ -17,3 +17,8 @@
 ## 0.0.5
 
 * Androidx library fix
+
+
+## 0.0.6
+
+* Android Issue with Guess file type method:  Disabled file types images and audio.
