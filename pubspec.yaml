@@ -1,6 +1,6 @@
 name: video_player_360
 description: A flutter plugin to stream 360° videos on iOS
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/innovationmauritiustelecom/video_player_360
 
 environment:

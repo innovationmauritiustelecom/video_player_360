@@ -18,7 +18,10 @@
 
 * Androidx library fix
 
-
 ## 0.0.6
 
 * Android Issue with Guess file type method:  Disabled file types images and audio.
+
+## 0.0.7
+
+* Replaced HTY360Player with GVR iOS SDK
