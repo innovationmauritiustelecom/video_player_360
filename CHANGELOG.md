@@ -25,3 +25,7 @@
 ## 0.0.7
 
 * Replaced HTY360Player with GVR iOS SDK
+
+## 0.0.8
+
+* Updated pubspec description
