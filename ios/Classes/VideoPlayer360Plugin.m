@@ -1,5 +1,4 @@
 #import "VideoPlayer360Plugin.h"
-#import "HTY360PlayerVC.h"
 #import "VideoPlayerViewController.h"
 
 @implementation VideoPlayer360Plugin
@@ -29,14 +28,6 @@
           if (url != nil) {
               NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"360_bundle" ofType:@"bundle"];
               NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-              
-              /*HTY360PlayerVC *videoController = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC"
-                                                                                 bundle:bundle
-                                                                                    url:url];
-              
-              [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:videoController
-                                                                                         animated:YES
-                                                                                       completion:nil];*/
               
               UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"GVRBoard" bundle:bundle];
               VideoPlayerViewController *viewController = (VideoPlayerViewController*)[storyBoard instantiateInitialViewController];
