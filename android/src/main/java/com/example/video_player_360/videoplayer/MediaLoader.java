@@ -187,7 +187,7 @@ public class MediaLoader {
 //          throw new FileNotFoundException();
 //        }
 
-        String type = URLConnection.guessContentTypeFromName(uri.getPath());
+        /*String type = URLConnection.guessContentTypeFromName(uri.getPath());
         if (type == null) {
           throw new InvalidParameterException("Unknown file type: " + uri);
 //        } else if (type.startsWith("image")) {
@@ -209,6 +209,13 @@ public class MediaLoader {
             // This needs to be synchronized with the methods that could clear mediaPlayer.
             mediaPlayer = mp;
           }
+        }*/
+        MediaPlayer mp = MediaPlayer.create(context, uri);
+        mp = MediaPlayer.create(context, Uri.parse(urlVideo));
+
+        synchronized (MediaLoader.this) {
+          // This needs to be synchronized with the methods that could clear mediaPlayer.
+          mediaPlayer = mp;
         }
 
       } catch (Exception e) {
