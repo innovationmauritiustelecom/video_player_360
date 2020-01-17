@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
           child: RaisedButton(
             onPressed: () async {
               await VideoPlayer360.playVideoURL(
-                  "http://196.192.110.79:1935/test/videoplay/playlist.m3u8");
+                  "ENTER_YOUR_360_VIDEO_URL_HERE");
             },
             child: Text("Click to play Video URL"),
           ),

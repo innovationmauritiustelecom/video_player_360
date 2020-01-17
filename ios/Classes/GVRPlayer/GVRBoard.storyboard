@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0oT-3f-23W">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Video-->
+        <scene sceneID="96N-fP-eaV">
+            <objects>
+                <viewController id="0oT-3f-23W" customClass="VideoPlayerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C32-Ct-liL"/>
+                        <viewControllerLayoutGuide type="bottom" id="AiZ-ml-4EU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pap-fa-Xeh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAh-MU-r3S">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="942"/>
+                                <connections>
+                                    <segue destination="vOH-0Y-5a7" kind="embed" id="Ej0-sq-dSE"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C3H-vf-eTe">
+                                <rect key="frame" x="0.0" y="940" width="600" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBq-d4-xID">
+                                        <rect key="frame" x="277.5" y="7.5" width="45" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="2GZ-cC-lao"/>
+                                            <constraint firstAttribute="width" constant="45" id="zFR-0E-CcG"/>
+                                        </constraints>
+                                        <state key="normal" image="play"/>
+                                        <connections>
+                                            <action selector="didTapPlayPause:" destination="0oT-3f-23W" eventType="touchUpInside" id="sFn-wc-lIt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WA1-yb-l77">
+                                        <rect key="frame" x="8" y="15" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="b9f-fh-96n"/>
+                                            <constraint firstAttribute="width" constant="30" id="j79-i4-bFQ"/>
+                                        </constraints>
+                                        <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="didTapBack:" destination="0oT-3f-23W" eventType="touchUpInside" id="c2w-j1-0bn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="GNj-n5-OkX"/>
+                                    <constraint firstItem="KBq-d4-xID" firstAttribute="centerX" secondItem="C3H-vf-eTe" secondAttribute="centerX" id="SyF-9l-pBr"/>
+                                    <constraint firstItem="KBq-d4-xID" firstAttribute="centerY" secondItem="C3H-vf-eTe" secondAttribute="centerY" id="Wna-j0-RZu"/>
+                                    <constraint firstItem="WA1-yb-l77" firstAttribute="centerY" secondItem="C3H-vf-eTe" secondAttribute="centerY" id="mjD-dX-j5w"/>
+                                    <constraint firstItem="WA1-yb-l77" firstAttribute="leading" secondItem="C3H-vf-eTe" secondAttribute="leading" constant="8" id="tNH-74-2yf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vAh-MU-r3S" secondAttribute="trailing" id="4Av-KZ-xU6"/>
+                            <constraint firstAttribute="trailing" secondItem="C3H-vf-eTe" secondAttribute="trailing" id="7X5-qg-lOO"/>
+                            <constraint firstItem="vAh-MU-r3S" firstAttribute="top" secondItem="pap-fa-Xeh" secondAttribute="top" id="Sft-Hu-xPU"/>
+                            <constraint firstItem="vAh-MU-r3S" firstAttribute="leading" secondItem="pap-fa-Xeh" secondAttribute="leading" id="W6g-XZ-8gZ"/>
+                            <constraint firstAttribute="bottom" secondItem="C3H-vf-eTe" secondAttribute="bottom" id="cfc-es-8dO"/>
+                            <constraint firstItem="C3H-vf-eTe" firstAttribute="leading" secondItem="pap-fa-Xeh" secondAttribute="leading" id="uvv-6K-ubJ"/>
+                            <constraint firstItem="AiZ-ml-4EU" firstAttribute="top" secondItem="vAh-MU-r3S" secondAttribute="bottom" constant="24" id="yrC-Yl-KUH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Video" id="jld-qq-f3g"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="1000"/>
+                    <connections>
+                        <outlet property="playPauseButton" destination="KBq-d4-xID" id="Bt2-A0-FNq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="79e-is-XNT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410.144927536232" y="329.46428571428572"/>
+        </scene>
+        <!--Renderer View Controller-->
+        <scene sceneID="dad-I2-cA6">
+            <objects>
+                <viewController id="vOH-0Y-5a7" customClass="GVRRendererViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FSx-lP-eE9"/>
+                        <viewControllerLayoutGuide type="bottom" id="9d5-Hw-t9v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ufX-bj-cnV" customClass="GVRRendererView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="966"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H57-9m-YWK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2826" y="330"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="back" width="512" height="512"/>
+        <image name="play" width="512" height="512"/>
+    </resources>
+</document>
