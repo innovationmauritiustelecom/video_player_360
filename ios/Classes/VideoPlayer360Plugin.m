@@ -1,6 +1,6 @@
 #import "VideoPlayer360Plugin.h"
 #import "HTY360PlayerVC.h"
-#import "GVRPlayerController.h"
+#import "VideoPlayerViewController.h"
 
 @implementation VideoPlayer360Plugin
 
@@ -15,8 +15,13 @@
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     
   if ([@"playvideo" isEqualToString:call.method]) {
-            
+
       NSString *video_url = call.arguments[@"video_url"];
+      int radius = [call.arguments[@"radius"] intValue];
+      int verticalFov = [call.arguments[@"verticalFov"] intValue];
+      int horizontalFov = [call.arguments[@"horizontalFov"] intValue];
+      int rows = [call.arguments[@"rows"] intValue];
+      int columns = [call.arguments[@"columns"] intValue];
       
       if (video_url != nil) {
           NSURL *url = [[NSURL alloc] initWithString:video_url];
@@ -33,13 +38,19 @@
                                                                                          animated:YES
                                                                                        completion:nil];*/
               
-              GVRPlayerController *videoController = [[GVRPlayerController alloc] initWithNibName:@"HTY360PlayerVC"
-                                                                                           bundle:bundle
-                                                                                              url:url];
+              UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"GVRBoard" bundle:bundle];
+              VideoPlayerViewController *viewController = (VideoPlayerViewController*)[storyBoard instantiateInitialViewController];
+              viewController.videoURL = url;
+              viewController.radius = radius;
+              viewController.verticalFov = verticalFov;
+              viewController.horizontalFov = horizontalFov;
+              viewController.rows = rows;
+              viewController.columns = columns;
               
-              [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:videoController
+              [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:viewController
                                                                                            animated:YES
                                                                                          completion:nil];
+              
           }
       }
       

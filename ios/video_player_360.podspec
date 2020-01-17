@@ -19,7 +19,7 @@ This flutter plugin will allow you to play 360° videos via a streaming or direc
   s.dependency 'GVRKit', '1.170.0'
   s.platform = :ios, '8.0'
   s.resource_bundles = {
-    '360_bundle' => ['Classes/**/*.{xib,fsh,vsh,xcassets}']
+    '360_bundle' => ['Classes/**/*.{xib,fsh,vsh,xcassets,storyboard}']
   }
   
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
