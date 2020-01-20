@@ -29,3 +29,7 @@
 ## 0.0.8
 
 * Updated pubspec description
+
+## 0.0.8
+
+* Android plugin: receive config parameters
