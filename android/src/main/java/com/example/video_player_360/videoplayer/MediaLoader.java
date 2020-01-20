@@ -35,10 +35,8 @@ import androidx.annotation.MainThread;
 import com.example.video_player_360.videoplayer.rendering.Mesh;
 import com.example.video_player_360.videoplayer.rendering.SceneRenderer;
 
-import java.net.URLConnection;
-import java.security.InvalidParameterException;
-
-import static com.example.video_player_360.VideoPlayer360Plugin.urlVideo;
+import static com.example.video_player_360.VideoPlayer360Plugin.*;
+import static com.example.video_player_360.VideoPlayer360Plugin.VIDEO_URL;
 
 /**
  * MediaLoader takes an Intent from the user and loads the specified media file.
@@ -84,18 +82,6 @@ public class MediaLoader {
 
   public static final String MEDIA_FORMAT_KEY = "stereoFormat";
   private static final int DEFAULT_SURFACE_HEIGHT_PX = 2048;
-
-  /** A spherical mesh for video should be large enough that there are no stereo artifacts. */
-  private static final int SPHERE_RADIUS_METERS = 50;
-
-  /** These should be configured based on the video type. But this sample assumes 360 video. */
-  private static final int DEFAULT_SPHERE_VERTICAL_DEGREES = 180;
-  private static final int DEFAULT_SPHERE_HORIZONTAL_DEGREES = 360;
-
-  /** The 360 x 180 sphere has 15 degree quads. Increase these if lines in your video look wavy. */
-  private static final int DEFAULT_SPHERE_ROWS = 50;
-  private static final int DEFAULT_SPHERE_COLUMNS = 50;
-
   private final Context context;
   // This can be replaced by any media player that renders to a Surface. In a real app, this
   // media player would be separated from the rendering code. It is left in this class for
@@ -195,7 +181,7 @@ public class MediaLoader {
 //          mediaImage = BitmapFactory.decodeFile(uri.getPath());
         } else if (type.startsWith("video")) {
           MediaPlayer mp = MediaPlayer.create(context, uri);
-          mp = MediaPlayer.create(context, Uri.parse(urlVideo));
+          mp = MediaPlayer.create(context, Uri.parse(VIDEO_URL));
 
           synchronized (MediaLoader.this) {
             // This needs to be synchronized with the methods that could clear mediaPlayer.
@@ -203,7 +189,7 @@ public class MediaLoader {
           }
         } else {
           MediaPlayer mp = MediaPlayer.create(context, uri);
-          mp = MediaPlayer.create(context, Uri.parse(urlVideo));
+          mp = MediaPlayer.create(context, Uri.parse(VIDEO_URL));
 
           synchronized (MediaLoader.this) {
             // This needs to be synchronized with the methods that could clear mediaPlayer.
@@ -211,7 +197,7 @@ public class MediaLoader {
           }
         }*/
         MediaPlayer mp = MediaPlayer.create(context, uri);
-        mp = MediaPlayer.create(context, Uri.parse(urlVideo));
+        mp = MediaPlayer.create(context, Uri.parse(VIDEO_URL));
 
         synchronized (MediaLoader.this) {
           // This needs to be synchronized with the methods that could clear mediaPlayer.

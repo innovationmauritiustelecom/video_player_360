@@ -1,6 +1,5 @@
 package com.example.video_player_360;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -18,7 +17,18 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /** VideoPlayer360Plugin */
 public class VideoPlayer360Plugin implements FlutterPlugin, MethodCallHandler {
   private Context context;
-  public static String urlVideo;
+  public static String VIDEO_URL;
+
+/** A spherical mesh for video should be large enough that there are no stereo artifacts. */
+  public static int SPHERE_RADIUS_METERS = 50;
+
+/** These should be configured based on the video type. But this sample assumes 360 video. */
+  public static int DEFAULT_SPHERE_VERTICAL_DEGREES = 180;
+  public static int DEFAULT_SPHERE_HORIZONTAL_DEGREES = 360;
+
+/** The 360 x 180 sphere has 15 degree quads. Increase these if lines in your video look wavy. */
+  public static int DEFAULT_SPHERE_ROWS = 50;
+  public static int DEFAULT_SPHERE_COLUMNS = 50;
 
 
   public VideoPlayer360Plugin() {
@@ -54,7 +64,14 @@ public class VideoPlayer360Plugin implements FlutterPlugin, MethodCallHandler {
 
       if (call.method.equals("playvideo")) {
 
-          urlVideo = call.argument("video_url");
+          /* Parameters to be set in Flutter when calling video_360 library */
+
+          VIDEO_URL = call.argument("video_url");
+          SPHERE_RADIUS_METERS = call.argument("radius");
+          DEFAULT_SPHERE_VERTICAL_DEGREES = call.argument("verticalFov");
+          DEFAULT_SPHERE_HORIZONTAL_DEGREES = call.argument("horizontalFov");
+          DEFAULT_SPHERE_ROWS = call.argument("rows");
+          DEFAULT_SPHERE_COLUMNS = call.argument("columns");
 
           Intent i = new Intent(context, VideoActivity.class);
           i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
