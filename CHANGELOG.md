@@ -30,6 +30,10 @@
 
 * Updated pubspec description
 
-## 0.0.8
+## 0.0.9
 
 * Android plugin: receive config parameters
+
+## 0.0.10
+
+* Android plugin: output success response when display 360 video is loaded 
