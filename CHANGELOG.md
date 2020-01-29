@@ -32,8 +32,12 @@
 
 ## 0.0.9
 
-* Android plugin: receive config parameters
+* Android: receive config parameters
 
 ## 0.0.10
 
-* Android plugin: output success response when display 360 video is loaded 
+* Android: output success response when display 360 video is loaded 
+
+## 0.0.11
+
+* Android: Fix VideoActivity in Portrait orientation
