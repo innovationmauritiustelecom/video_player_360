@@ -16,6 +16,7 @@
     <application
         android:usesCleartextTraffic="true">
         <activity android:name=".videoplayer.VideoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/VrTheme"></activity>
         <activity android:name=".videoplayer.VrVideoActivity"></activity>
     </application>

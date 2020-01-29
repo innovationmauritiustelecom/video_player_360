@@ -11,7 +11,7 @@ The iOS player uses the open source [Google VR SDK for iOS](https://github.com/g
 The Android player uses the open source [Google VR SDK for Android](https://github.com/googlevr/gvr-android-sdk)
 
 ## Installation
-Add video_player_360: ^0.0.9 in your pubspec.yaml dependencies.
+Add video_player_360: ^0.0.11 in your pubspec.yaml dependencies.
 
 ## How to use #
 importing the library:

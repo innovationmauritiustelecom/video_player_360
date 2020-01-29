@@ -31,5 +31,12 @@
 * Updated pubspec description
 
 ## 0.0.9
+* Android: receive config parameters
 
-* Android plugin: receive config parameters
+## 0.0.10
+
+* Android: output success response when display 360 video is loaded 
+
+## 0.0.11
+
+* Android: Fix VideoActivity in Portrait orientation

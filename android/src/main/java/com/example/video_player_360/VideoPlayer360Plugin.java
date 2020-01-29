@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 
 import com.example.video_player_360.videoplayer.VideoActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -77,7 +80,8 @@ public class VideoPlayer360Plugin implements FlutterPlugin, MethodCallHandler {
           i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
           context.startActivity(i);
-          result.success("loading video");
+
+          result.success(new HashMap<>().put("result", "success"));
       } else {
           result.notImplemented();
       }
