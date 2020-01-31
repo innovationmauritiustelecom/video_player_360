@@ -37,6 +37,7 @@
               viewController.horizontalFov = horizontalFov;
               viewController.rows = rows;
               viewController.columns = columns;
+              viewController.modalPresentationStyle = UIModalPresentationFullScreen;
               
               [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:viewController
                                                                                            animated:YES
