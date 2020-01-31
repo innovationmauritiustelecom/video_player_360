@@ -31,7 +31,6 @@
 * Updated pubspec description
 
 ## 0.0.9
-
 * Android: receive config parameters
 
 ## 0.0.10
