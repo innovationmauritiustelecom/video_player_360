@@ -40,3 +40,8 @@
 ## 0.0.11
 
 * Android: Fix VideoActivity in Portrait orientation
+
+## 0.1.0
+
+* Added progress indicator
+* Added tilt placeholder view
