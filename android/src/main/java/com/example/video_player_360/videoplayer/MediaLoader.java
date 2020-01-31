@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.Surface;
+import android.view.View;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.MainThread;
@@ -78,8 +79,8 @@ import static com.example.video_player_360.VideoPlayer360Plugin.VIDEO_URL;
  * <b>adb shell am start -a android.intent.action.VIEW -t video/mpeg -d "file:///VIDEO.MP4"</b>
  */
 public class MediaLoader {
-  private static final String TAG = "MediaLoader";
 
+  private static final String TAG = "MediaLoader";
   public static final String MEDIA_FORMAT_KEY = "stereoFormat";
   private static final int DEFAULT_SURFACE_HEIGHT_PX = 2048;
   private final Context context;
@@ -145,6 +146,9 @@ public class MediaLoader {
 
     @Override
     protected Void doInBackground(Intent... intent) {
+      if (VideoActivity.loadingProgressView != null) {
+        VideoActivity.loadingProgressView.setVisibility(View.VISIBLE);
+      }
 
       if (intent == null || intent.length < 1 || intent[0] == null || intent[0].getData() == null) {
         // This happens if the Activity wasn't started with the right intent.
@@ -219,6 +223,10 @@ public class MediaLoader {
       if (uiView != null) {
         uiView.setMediaPlayer(mediaPlayer);
       }
+      if (VideoActivity.loadingProgressView != null) {
+        VideoActivity.loadingProgressView.setVisibility(View.GONE);
+      }
+
     }
   }
 

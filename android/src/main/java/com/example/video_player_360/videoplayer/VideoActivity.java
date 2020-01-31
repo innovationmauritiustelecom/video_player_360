@@ -22,9 +22,12 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -47,6 +50,9 @@ public class VideoActivity extends Activity {
   private static final int READ_EXTERNAL_STORAGE_PERMISSION_ID = 1;
   private MonoscopicView videoView;
 
+  public static View loadingProgressView;
+  private View viewTiltInstruction;
+
   /**
    * Checks that the appropriate permissions have been granted. Otherwise, the sample will wait
    * for the user to grant the permission.
@@ -59,6 +65,31 @@ public class VideoActivity extends Activity {
     setContentView(R.layout.video_activity);
 
     // Configure the MonoscopicView which will render the video and UI.
+    loadingProgressView = findViewById(R.id.loading_progress_view);
+    viewTiltInstruction = findViewById(R.id.view_tilt_instruction);
+
+    Runnable timerRunnable = new Runnable() {
+      @Override
+      public void run() {
+
+        Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+        viewTiltInstruction.startAnimation(animFadeOut);
+        animFadeOut.setAnimationListener(new Animation.AnimationListener() {
+          @Override
+          public void onAnimationStart(Animation animation) {}
+
+          @Override
+          public void onAnimationEnd(Animation animation) {
+            viewTiltInstruction.setVisibility(View.GONE);
+          }
+
+          @Override
+          public void onAnimationRepeat(Animation animation) {}
+        });
+      }
+    };
+    new Handler().postDelayed(timerRunnable, 4000);
+
     videoView = (MonoscopicView) findViewById(R.id.video_view);
     VideoUiView videoUi = (VideoUiView) findViewById(R.id.video_ui_view);
     videoUi.setVrIconClickListener(

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Layout for the 2D Activity. It will either show a permission button or the MonoscopicView. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_root"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -11,14 +11,14 @@
         android:id="@+id/permission_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:visibility="gone"
         android:text="@string/permission_warning"/>
 
     <!-- These views are hidden unless the permission is granted. -->
     <com.example.video_player_360.videoplayer.MonoscopicView
         android:id="@+id/video_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_gravity="top"
         android:layout_weight="1"
         android:visibility="gone"/>
@@ -26,6 +26,33 @@
     <include
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
         layout="@layout/video_ui"
         android:visibility="gone"/>
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/loading_progress_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/view_tilt_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="Tilt or drag to look around"/>
+    </LinearLayout>
+
+</RelativeLayout>
