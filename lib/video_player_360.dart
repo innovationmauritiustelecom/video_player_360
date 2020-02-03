@@ -21,12 +21,15 @@ class VideoPlayer360 {
   /// @param columns Number of columns that make up the sphere. Must be >= 1.
   ///
 
-  static Future<void> playVideoURL(String url,
-      {int radius = 50,
-      int verticalFov = 180,
-      int horizontalFov = 360,
-      int rows = 50,
-      int columns = 50}) async {
+  static Future<void> playVideoURL(
+    String url, {
+    int radius = 50,
+    int verticalFov = 180,
+    int horizontalFov = 360,
+    int rows = 50,
+    int columns = 50,
+    bool showPlaceholder = false,
+  }) async {
     return _channel.invokeMapMethod("playvideo", <String, dynamic>{
       'video_url': url,
       'radius': radius,
@@ -34,6 +37,7 @@ class VideoPlayer360 {
       'horizontalFov': horizontalFov,
       'rows': rows,
       'columns': columns,
+      'showPlaceholder': showPlaceholder,
     });
   }
 }

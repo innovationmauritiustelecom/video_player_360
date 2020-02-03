@@ -8,5 +8,6 @@
 @property(nonatomic, assign) int horizontalFov;
 @property(nonatomic, assign) int rows;
 @property(nonatomic, assign) int columns;
+@property(nonatomic, assign) bool showPlaceholder;
 
 @end
