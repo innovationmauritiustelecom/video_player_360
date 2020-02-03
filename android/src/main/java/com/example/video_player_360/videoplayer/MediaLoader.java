@@ -362,7 +362,11 @@ public class MediaLoader {
   public synchronized void destroy() {
     if (mediaPlayer != null) {
       mediaPlayer.stop();
-      mediaPlayer.release();
+      try {
+        mediaPlayer.release();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
       mediaPlayer = null;
     }
     isDestroyed = true;

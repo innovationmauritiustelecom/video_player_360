@@ -33,6 +33,9 @@ public class VideoPlayer360Plugin implements FlutterPlugin, MethodCallHandler {
   public static int DEFAULT_SPHERE_ROWS = 50;
   public static int DEFAULT_SPHERE_COLUMNS = 50;
 
+/** Tilt Placeholder as instructions how to use the VR Player */
+  public static boolean SHOW_PLACEHOLDER = false;
+
 
   public VideoPlayer360Plugin() {
 
@@ -75,6 +78,7 @@ public class VideoPlayer360Plugin implements FlutterPlugin, MethodCallHandler {
           DEFAULT_SPHERE_HORIZONTAL_DEGREES = call.argument("horizontalFov");
           DEFAULT_SPHERE_ROWS = call.argument("rows");
           DEFAULT_SPHERE_COLUMNS = call.argument("columns");
+          SHOW_PLACEHOLDER = call.argument("showPlaceholder");
 
           Intent i = new Intent(context, VideoActivity.class);
           i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

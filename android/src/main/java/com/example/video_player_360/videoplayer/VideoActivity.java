@@ -36,6 +36,8 @@ import com.example.video_player_360.R;
 import com.example.video_player_360.videoplayer.rendering.Mesh;
 import com.google.vr.ndk.base.DaydreamApi;
 
+import static com.example.video_player_360.VideoPlayer360Plugin.SHOW_PLACEHOLDER;
+
 /**
  * Basic Activity to hold {@link MonoscopicView} and render a 360 video in 2D.
  *
@@ -68,27 +70,7 @@ public class VideoActivity extends Activity {
     loadingProgressView = findViewById(R.id.loading_progress_view);
     viewTiltInstruction = findViewById(R.id.view_tilt_instruction);
 
-    Runnable timerRunnable = new Runnable() {
-      @Override
-      public void run() {
 
-        Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-        viewTiltInstruction.startAnimation(animFadeOut);
-        animFadeOut.setAnimationListener(new Animation.AnimationListener() {
-          @Override
-          public void onAnimationStart(Animation animation) {}
-
-          @Override
-          public void onAnimationEnd(Animation animation) {
-            viewTiltInstruction.setVisibility(View.GONE);
-          }
-
-          @Override
-          public void onAnimationRepeat(Animation animation) {}
-        });
-      }
-    };
-    new Handler().postDelayed(timerRunnable, 4000);
 
     videoView = (MonoscopicView) findViewById(R.id.video_view);
     VideoUiView videoUi = (VideoUiView) findViewById(R.id.video_ui_view);
@@ -147,6 +129,42 @@ public class VideoActivity extends Activity {
       // Permission has already been granted.
       initializeActivity();
    // }
+
+    // this should be after initializeActivity()
+    if (SHOW_PLACEHOLDER) {
+      // check if have to display placeholder (tilt instructions)
+      showPlaceholder();
+    } else {
+      viewTiltInstruction.setVisibility(View.GONE);
+    }
+  }
+
+  private void showPlaceholder() {
+    viewTiltInstruction.setVisibility(View.VISIBLE);
+
+    Runnable timerRunnable = new Runnable() {
+      @Override
+      public void run() {
+
+        Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+        viewTiltInstruction.startAnimation(animFadeOut);
+        animFadeOut.setAnimationListener(new Animation.AnimationListener() {
+          @Override
+          public void onAnimationStart(Animation animation) {}
+
+          @Override
+          public void onAnimationEnd(Animation animation) {
+            viewTiltInstruction.setVisibility(View.GONE);
+          }
+
+          @Override
+          public void onAnimationRepeat(Animation animation) {}
+        });
+      }
+    };
+
+
+    new Handler().postDelayed(timerRunnable, 2000);
   }
 
   /** Handles the user accepting the permission. */
