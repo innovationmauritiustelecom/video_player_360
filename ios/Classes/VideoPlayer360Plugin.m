@@ -21,6 +21,7 @@
       int horizontalFov = [call.arguments[@"horizontalFov"] intValue];
       int rows = [call.arguments[@"rows"] intValue];
       int columns = [call.arguments[@"columns"] intValue];
+      bool showPlaceholder = [call.arguments[@"showPlaceholder"] boolValue];
       
       if (video_url != nil) {
           NSURL *url = [[NSURL alloc] initWithString:video_url];
@@ -38,6 +39,7 @@
               viewController.rows = rows;
               viewController.columns = columns;
               viewController.modalPresentationStyle = UIModalPresentationFullScreen;
+              viewController.showPlaceholder = showPlaceholder;
               
               [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:viewController
                                                                                            animated:YES
