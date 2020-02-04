@@ -6,6 +6,8 @@
 @interface VideoPlayerViewController ()<GVRRendererViewControllerDelegate>
 @property (nonatomic) IBOutlet GVRRendererView *videoView;
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loader;
+@property (weak, nonatomic) IBOutlet UIView *tiltView;
 @property (nonatomic) AVPlayer *player;
 @property (nonatomic) NSBundle *bundle;
 
@@ -17,6 +19,7 @@
   [super viewDidLoad];
 
     // NSURL *videoURL = [NSURL URLWithString:@"http://196.192.110.79:1935/test/videoplay/playlist.m3u8"];
+    [_loader startAnimating];
       
     _player = [AVPlayer playerWithURL:_videoURL];
     _player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
@@ -34,12 +37,20 @@
     _bundle = [NSBundle bundleWithPath:bundlePath];
     
     [self hideGVRButtons];
+    [self addObservers];
+    [self hideTiltView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
   [self updateVideoPlayback];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self removeObservers];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -160,6 +171,53 @@
         self.videoView.overlayView.hidesFullscreenButton = true;
         self.videoView.overlayView.hidesSettingsButton = true;
     });
+}
+
+- (void)addObservers {
+    [_player.currentItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
+    [_player.currentItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
+    [_player.currentItem addObserver:self forKeyPath:@"playbackBufferFull" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)removeObservers {
+    [_player.currentItem removeObserver:self forKeyPath:@"playbackBufferEmpty" context:nil];
+    [_player.currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp" context:nil];
+    [_player.currentItem removeObserver:self forKeyPath:@"playbackBufferFull" context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isKindOfClass:[AVPlayerItem class]]) {
+        if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
+            [_loader setHidden:FALSE];
+            //NSLog(@"playbackBufferEmpty");
+            
+        } else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
+            [_loader setHidden:TRUE];
+            //NSLog(@"playbackLikelyToKeepUp");
+
+        } else if ([keyPath isEqualToString:@"playbackBufferFull"]) {
+            [_loader setHidden:TRUE];
+            //NSLog(@"playbackBufferFull");
+            
+        }
+    }
+}
+
+- (void)hideTiltView {
+    if (!_showPlaceholder) {
+        [self.tiltView setHidden:TRUE];
+    } else {
+        double delayInSeconds = 2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [UIView transitionWithView:self.tiltView
+                              duration:delayInSeconds
+                               options:UIViewAnimationOptionTransitionCrossDissolve
+                            animations:^{
+                [self.tiltView setHidden:TRUE];
+            } completion:NULL];
+        });
+    }
 }
 
 @end
