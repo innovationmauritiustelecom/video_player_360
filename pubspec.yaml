@@ -1,6 +1,6 @@
 name: video_player_360
 description: A flutter plugin to stream 360° videos on iOS and Android via a remote URL. The plugin uses the open source Google VR SDK.
-version: 0.1.2
+version: 0.1.3
 homepage: https://github.com/innovationmauritiustelecom/video_player_360
 
 environment:

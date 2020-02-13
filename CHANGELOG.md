@@ -53,3 +53,7 @@
 ## 0.1.2
 
 * Android compatibility fix
+
+## 0.1.3
+
+* Android compatibility fix
