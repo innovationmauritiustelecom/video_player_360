@@ -36,6 +36,11 @@ import androidx.annotation.MainThread;
 import com.example.video_player_360.videoplayer.rendering.Mesh;
 import com.example.video_player_360.videoplayer.rendering.SceneRenderer;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URLConnection;
+import java.security.InvalidParameterException;
+
 import static com.example.video_player_360.VideoPlayer360Plugin.*;
 import static com.example.video_player_360.VideoPlayer360Plugin.VIDEO_URL;
 
@@ -123,7 +128,7 @@ public class MediaLoader {
     // Note that this sample doesn't cancel any pending mediaLoaderTasks since it assumes only one
     // Intent will ever be fired for a single Activity lifecycle.
     mediaLoaderTask = new MediaLoaderTask(uiView);
-    intent.setData(Uri.parse("http://196.192.110.79:1935/test/videoplay/playlist.m3u8"));
+    intent.setData(Uri.parse(VIDEO_URL));
     mediaLoaderTask.execute(intent);
   }
 
@@ -158,34 +163,42 @@ public class MediaLoader {
       }
 
       // Extract the stereoFormat from the Intent's extras.
+
       int stereoFormat = intent[0].getIntExtra(MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC);
       if (stereoFormat != Mesh.MEDIA_STEREO_LEFT_RIGHT
-          && stereoFormat != Mesh.MEDIA_STEREO_TOP_BOTTOM) {
+              && stereoFormat != Mesh.MEDIA_STEREO_TOP_BOTTOM) {
         stereoFormat = Mesh.MEDIA_MONOSCOPIC;
       }
 
       mesh = Mesh.createUvSphere(
-          SPHERE_RADIUS_METERS, DEFAULT_SPHERE_ROWS, DEFAULT_SPHERE_COLUMNS,
-          DEFAULT_SPHERE_VERTICAL_DEGREES, DEFAULT_SPHERE_HORIZONTAL_DEGREES,
-          stereoFormat);
+              SPHERE_RADIUS_METERS, DEFAULT_SPHERE_ROWS, DEFAULT_SPHERE_COLUMNS,
+              DEFAULT_SPHERE_VERTICAL_DEGREES, DEFAULT_SPHERE_HORIZONTAL_DEGREES,
+              stereoFormat);
 
       // Based on the Intent's data, load the appropriate media from disk.
       Uri uri = intent[0].getData();
+
       try {
 //        File file = new File(uri.getPath());
 //        if (!file.exists()) {
 //          throw new FileNotFoundException();
 //        }
 
-        /*String type = URLConnection.guessContentTypeFromName(uri.getPath());
+        String type = URLConnection.guessContentTypeFromName(uri.getPath());
         if (type == null) {
-          throw new InvalidParameterException("Unknown file type: " + uri);
-//        } else if (type.startsWith("image")) {
-//          // Decoding a large image can take 100+ ms.
-//          mediaImage = BitmapFactory.decodeFile(uri.getPath());
+//          throw new InvalidParameterException("Unknown file type: " + uri);
+          MediaPlayer mp = MediaPlayer.create(context, uri);
+
+
+          synchronized (MediaLoader.this) {
+            // This needs to be synchronized with the methods that could clear mediaPlayer.
+            mediaPlayer = mp;
+          }
+        } else if (type.startsWith("image")) {
+          // Decoding a large image can take 100+ ms.
+          mediaImage = BitmapFactory.decodeFile(uri.getPath());
         } else if (type.startsWith("video")) {
           MediaPlayer mp = MediaPlayer.create(context, uri);
-          mp = MediaPlayer.create(context, Uri.parse(VIDEO_URL));
 
           synchronized (MediaLoader.this) {
             // This needs to be synchronized with the methods that could clear mediaPlayer.
@@ -193,23 +206,15 @@ public class MediaLoader {
           }
         } else {
           MediaPlayer mp = MediaPlayer.create(context, uri);
-          mp = MediaPlayer.create(context, Uri.parse(VIDEO_URL));
 
           synchronized (MediaLoader.this) {
             // This needs to be synchronized with the methods that could clear mediaPlayer.
             mediaPlayer = mp;
           }
-        }*/
-        MediaPlayer mp = MediaPlayer.create(context, uri);
-        mp = MediaPlayer.create(context, Uri.parse(VIDEO_URL));
-
-        synchronized (MediaLoader.this) {
-          // This needs to be synchronized with the methods that could clear mediaPlayer.
-          mediaPlayer = mp;
         }
 
       } catch (Exception e) {
-        errorText = String.format("Error loading file [%s]: %s", uri.getPath(), e);
+        errorText = String.format("Error loading file [%s]: %s", "", e);
         Log.e(TAG, errorText);
       }
 

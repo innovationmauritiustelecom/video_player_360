@@ -49,3 +49,7 @@
 ## 0.1.1
 
 * Make tilt placeholder view optional
+
+## 0.1.2
+
+* Android compatibility fix
