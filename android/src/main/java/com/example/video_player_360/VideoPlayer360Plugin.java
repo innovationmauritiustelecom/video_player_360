@@ -20,7 +20,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /** VideoPlayer360Plugin */
 public class VideoPlayer360Plugin implements FlutterPlugin, MethodCallHandler {
   private Context context;
-  public static String VIDEO_URL;
+  public static String VIDEO_URL = "";
 
 /** A spherical mesh for video should be large enough that there are no stereo artifacts. */
   public static int SPHERE_RADIUS_METERS = 50;
@@ -71,8 +71,9 @@ public class VideoPlayer360Plugin implements FlutterPlugin, MethodCallHandler {
       if (call.method.equals("playvideo")) {
 
           /* Parameters to be set in Flutter when calling video_360 library */
-
-          VIDEO_URL = call.argument("video_url");
+          if (call.argument("video_url") != null) {
+            VIDEO_URL = call.argument("video_url");
+          }
           SPHERE_RADIUS_METERS = call.argument("radius");
           DEFAULT_SPHERE_VERTICAL_DEGREES = call.argument("verticalFov");
           DEFAULT_SPHERE_HORIZONTAL_DEGREES = call.argument("horizontalFov");

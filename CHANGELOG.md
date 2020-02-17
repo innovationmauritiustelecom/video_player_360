@@ -57,3 +57,7 @@
 ## 0.1.3
 
 * Android compatibility fix
+
+## 0.1.4
+
+* Android progress loader crash fix

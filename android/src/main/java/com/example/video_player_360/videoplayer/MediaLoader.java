@@ -128,8 +128,10 @@ public class MediaLoader {
     // Note that this sample doesn't cancel any pending mediaLoaderTasks since it assumes only one
     // Intent will ever be fired for a single Activity lifecycle.
     mediaLoaderTask = new MediaLoaderTask(uiView);
+
     intent.setData(Uri.parse(VIDEO_URL));
     mediaLoaderTask.execute(intent);
+
   }
 
   /** Notifies MediaLoader that GL components have initialized. */
@@ -151,9 +153,6 @@ public class MediaLoader {
 
     @Override
     protected Void doInBackground(Intent... intent) {
-      if (VideoActivity.loadingProgressView != null) {
-        VideoActivity.loadingProgressView.setVisibility(View.VISIBLE);
-      }
 
       if (intent == null || intent.length < 1 || intent[0] == null || intent[0].getData() == null) {
         // This happens if the Activity wasn't started with the right intent.
