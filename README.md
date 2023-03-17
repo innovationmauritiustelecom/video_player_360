@@ -1,3 +1,8 @@
+## Deprecated
+
+⚠️ This plugin is no longer supported and may contain outdated information.
+
+
 # video_player_360
 
 A Flutter plugin to stream 360° videos on iOS and Android
